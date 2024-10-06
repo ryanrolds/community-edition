@@ -3,16 +3,12 @@ services:
     image: dansylvest/eve-route-builder:main
     container_name: eve-route-builder
     restart: always
-    networks:
-      wanderer-internal:
     environment:
       - PORT=2001
 
   wanderer_db:
     image: postgres:16-alpine
     restart: unless-stopped
-    networks:
-      wanderer-internal:
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
@@ -25,9 +21,6 @@ services:
     depends_on:
       - eve-route-builder
       - wanderer_db
-    networks:
-      wanderer-internal:
-      web:
     healthcheck:
       disable: true
     ports:
@@ -38,15 +31,8 @@ services:
       - PHX_SERVER=true
       - ECTO_IPV6=false
     env_file:
-      - wanderer-conf.env
+      - wanderer-conf.env.local
 
 volumes:
   db-data:
     driver: local
-
-networks:
-  wanderer-internal:
-    internal: true
-  web:
-    external: true
-    name: web

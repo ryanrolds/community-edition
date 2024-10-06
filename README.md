@@ -55,13 +55,14 @@ remote: Total 280 (delta 106), reused 86 (delta 71), pack-reused 134
 Receiving objects: 100% (280/280), 69.44 KiB | 7.71 MiB/s, done.
 Resolving deltas: 100% (136/136), done.
 $ ls hosting
-README.md           docker-compose.yml  images/             wanderer-conf.env  reverse-proxy/
+README.md           docker-compose.yml  images/             wanderer-conf.env.example  reverse-proxy/
+$ cp hosting/wanderer-conf.env.example hosting/wanderer-conf.env
 ```
 
 In the downloaded directory you'll find two important files:
 
 - [docker-compose.yml](./docker-compose.yml) — installs and orchestrates networking between your Wanderer CE server and Postgres database.
-- [wanderer-conf.env](./wanderer-conf.env) — configures the Wanderer server itself. Full configuration options are documented [below.](#configure)
+- [wanderer-conf.env.example](./wanderer-conf.env.example) — example configutation for the Wanderer server itself. Full configuration options are documented [below.](#configure)
 
 Right now the latter looks like this:
 
